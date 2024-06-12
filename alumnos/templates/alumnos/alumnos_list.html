@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Listar alumnos</h1>
+
+    <button type="button">
+        <a href="{% url 'alumnosAdd' %}"> Agregar </a>
+    </button>
+
+    <div id="idMensajes">
+        {% if mensaje %}
+            {{mensaje}}
+        {% endif %}
+    </div>
+    <table>
+        {% if alumnos %}
+            <th>Rut</th>
+            <th>Nombre</th>
+            <th>Apellido P</th>
+            <th>Apellido M</th>
+            <th>Email</th>
+            <th>Nacimineto</th>
+            <th>Genero</th>
+            <th>telefono</th>
+            <th>email</th>
+            <th>direccion</th>
+            <th>Eliminar</th>
+            <th>Modificar</th>
+            {% for alumno in alumnos %}
+                <tr>
+                    <td>{{alumno.rut}}</td>
+                    <td>{{alumno.nombre}}</td>
+                    <td>{{alumno.apellido_paterno}}</td>
+                    <td>{{alumno.apellido_materno}}</td>
+                    <td>{{alumno.email}}</td>
+                    <td>{{alumno.fecha_nacimiento}}</td>
+                    <td>{{alumno.id_genero}}</td>
+                    <td>{{alumno.telefono}}</td>
+                    <td>{{alumno.email}}</td>
+                    <td>{{alumno.direccion}}</td>
+                    <td><a href="{% url 'alumnos_del' pk=alumno.rut %}">Eliminar</a></td>
+                    <td><a href="{% url 'alumnos_findEdit' pk=alumno.rut %}">Modificar</a></td>
+                </tr>
+            {% endfor %}
+        {% endif %}
+    </table>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $("#idMensajes").delay(2000).fadeOut("slow");
+    });
+</script>
+</body>
+</html>
